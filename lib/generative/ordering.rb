@@ -1,7 +1,12 @@
 RSpec.configure do |rspec|
   rspec.register_ordering :generative do |examples|
-    number_of_examples = ENV.fetch('GENERATIVE_COUNT', '100').to_i
+    time_per_example = ENV.fetch('GENERATIVE_FACTOR', '0.001').to_f
+    end_time = Time.now.to_f + (examples.count * time_per_example)
 
-    examples * number_of_examples
+    Enumerator.new { |enumerator|
+      while Time.now.to_f < end_time && !RSpec.wants_to_quit
+        enumerator.yield(examples.sample)
+      end
+    }
   end
 end
