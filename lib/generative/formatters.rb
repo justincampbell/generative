@@ -55,7 +55,6 @@ class Generative < RSpec::Core::Formatters::DocumentationFormatter
   def example_failed(example)
     if generative?(example)
       RSpec.wants_to_quit = true
-      return
     end
 
     super(example)
