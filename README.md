@@ -14,6 +14,7 @@ You're already using RSpec 3, right? Of course you are.
 ```rb
 group :test do
   gem 'generative'
+  gem 'random_data'
   gem 'rspec', '3.0.0.beta1'
 end
 ```
@@ -55,6 +56,9 @@ would a `let`. Then, write your `it`/`specify` blocks as usual (while keeping
 in mind that the input could be anything).
 
 ```rb
+require 'generative'
+require 'random_data'
+
 describe String do
   let(:string) { "abc" }
 
@@ -64,7 +68,7 @@ describe String do
     end
 
     generative do
-      data(:string) { rand(12345).to_s }
+      data(:string) { [Random.alphanumeric, Random.paragraphs].sample }
 
       it "maintains length" do
         expect(string.reverse.length).to eq(string.length)
@@ -79,6 +83,14 @@ end
 ```
 
 Now, run your tests with `rake` or `rspec`.
+
+### Data Generation
+
+For the examples above, we're using the
+[random_data](https://github.com/tomharris/random_data) gem. Feel free to use
+any data generation library you need, or write your own inside of the `data`
+block. Take a look at the list of [data generation libraries on Ruby
+Toolbox](https://www.ruby-toolbox.com/categories/random_data_generation).
 
 ### Number of Tests
 
