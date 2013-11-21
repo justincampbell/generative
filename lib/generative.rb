@@ -1,5 +1,5 @@
-require "generative/version"
+require 'rspec/core'
 
-module Generative
-  # Your code goes here...
-end
+require 'generative/dsl'
+require 'generative/formatters'
+require 'generative/ordering'
