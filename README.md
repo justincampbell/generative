@@ -64,7 +64,7 @@ describe String do
     end
 
     generative do
-      data(:string) { rand(12345).to_s }
+      data(:string) { build_instance(String) }
 
       it "maintains length" do
         expect(string.reverse.length).to eq(string.length)
@@ -92,3 +92,32 @@ Given the examples above, running `rspec` will use the default "progress"
 formatter. Requiring generative will modify this formatter to output blue dots
 instead of green for generative tests. Generative also includes it's own
 formatter, which will only display generative test names once, also in blue.
+
+### Building data from classes.
+
+If your models use ActiveRecord, Mongoid, ROM, or CouchRest, we can create
+random instances of your models. As long as there's a listing that maps the
+model's fields to primitives, we can randomly generate a model with random values.
+
+```
+  #suppose class User has
+  generative do
+    data(:user) { build_instance(User) }
+
+    it "expects the email address to contain the first and last name" do
+      expect(user.email).to include(user.first_name)
+      expect(user.email).to include(user.last_name)
+    end
+  end
+
+```
+
+You can in fact, list the mappings for an arbitrary object, if it doesn't
+already have an annotation somewhere.
+
+```
+class Point < Inferencer::Mapping
+  map :x, :float
+  map :y, :float
+end
+```
