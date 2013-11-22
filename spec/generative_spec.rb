@@ -1,4 +1,5 @@
 require 'generative'
+require 'random_data'
 
 describe String do
   let(:string) { "abc" }
@@ -11,7 +12,7 @@ describe String do
     xit "does other stuff"
 
     generative do
-      data(:string) { "a" * rand(255) }
+      data(:string) { [Random.alphanumeric, Random.paragraphs].sample }
 
       it "is never negative", :generative do
         expect(string.length).to be >= 0
@@ -25,7 +26,7 @@ describe String do
     end
 
     generative do
-      data(:string) { rand(12345).to_s }
+      data(:string) { [Random.alphanumeric, Random.paragraphs].sample }
 
       it "maintains length" do
         expect(string.reverse.length).to eq(string.length)
