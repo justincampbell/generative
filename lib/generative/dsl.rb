@@ -6,6 +6,10 @@ class RSpec::Core::ExampleGroup
     describe(name, generative: true, order: :generative, &block)
   end
 
+  def generate(type)
+    RandomTypes.data(type)
+  end
+
   class << self
     alias_method :data, :let
   end
