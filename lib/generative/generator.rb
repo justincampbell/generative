@@ -17,12 +17,6 @@ class Generator
   end
 
   def random_val_for type
-    if type == :fixnum
-      rand(0..32000)
-    elsif type == :string
-      "fake random string. blerg"
-    else
-      ""
-    end
+    RandomTypes.send(type)
   end
 end

@@ -1,18 +1,6 @@
 require 'randexp'
 
-module Inferencer
-
-  def self.instance_of(model_class)
-    instance = model_class.new
-    model_class.column_types.each do |name, info|
-      instance[name] = LameRandom.data(info.type)
-    end
-
-    return instance
-  end
-end
-
-module LameRandom
+module RandomTypes
 
   def self.data(type)
     send type
@@ -48,6 +36,7 @@ module LameRandom
 
   class << self
     alias_method :decimal, :float
+    alias_method :fixnum, :integer
   end
 
 end
