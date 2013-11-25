@@ -6,7 +6,7 @@ class RSpec::Core::ExampleGroup
     describe(name, generative: true, order: :generative, &block)
   end
 
-  def generate(type)
+  def build_instance(type)
     RandomTypes.data(type)
   end
 

@@ -11,7 +11,7 @@ describe String do
     xit "does other stuff"
 
     generative do
-      data(:string) { generate(:string) }
+      data(:string) { build_instance(:string) }
 
       it "is never negative", :generative do
         expect(string.length).to be >= 0
@@ -25,7 +25,7 @@ describe String do
     end
 
     generative do
-      data(:string) { generate(:fixnum).to_s }
+      data(:string) { build_instance(:fixnum).to_s }
 
       it "maintains length" do
         expect(string.reverse.length).to eq(string.length)
