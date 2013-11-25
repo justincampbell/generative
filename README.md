@@ -116,8 +116,23 @@ You can in fact, list the mappings for an arbitrary object, if it doesn't
 already have an annotation somewhere.
 
 ```
-class Point < Inferencer::Mapping
-  map :x, :float
-  map :y, :float
+class PointMapping < Generative::TypeMapping
+
+  generator_for Point do
+
+    # if your class's data is only accessible from the initializer,
+    # use initializer to pass
+    initializer :float, :float
+
+    # or build a hash if
+    initializer { x: :float, y: :float }
+
+    # if the fields can written to via an accessor method,
+    # use accessor to declare the types
+    accessor :x, Float
+    accessor :y, Float
+
+    # you can use class names or camel_cased strings or symbols.
+  end
 end
 ```
