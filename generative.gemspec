@@ -5,8 +5,8 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 Gem::Specification.new do |gem|
   gem.name          = 'generative'
   gem.version       = '0.0.1'
-  gem.authors       = ["Justin Campbell"]
-  gem.email         = ["justin@justincampbell.me"]
+  gem.authors       = ["Justin Campbell",          "Dan McClory"]
+  gem.email         = ["justin@justincampbell.me", "danmcclory@gmail.com"]
   gem.description   = "Generative testing for RSpec"
   gem.summary       = "Generative testing for RSpec"
   gem.homepage      = "https://github.com/justincampbell/generative"
