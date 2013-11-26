@@ -10,6 +10,7 @@ Gem::Specification.new do |gem|
   gem.description   = "Generative testing for RSpec"
   gem.summary       = "Generative testing for RSpec"
   gem.homepage      = "https://github.com/justincampbell/generative"
+  gem.license       = 'MIT'
 
   gem.files         = `git ls-files`.split($/)
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
