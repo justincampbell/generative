@@ -7,16 +7,16 @@
 
 ## Installation
 
-You're already using RSpec 3, right? Of course you are.
-
-### Add Generative to your Gemfile:
+### Add Generative to your Gemfile (or gemspec):
 
 ```rb
 group :test do
   gem 'generative'
-  gem 'rspec', '3.0.0.beta1'
+  gem 'rspec'
 end
 ```
+
+...and then run `bundle`.
 
 ### Require Generative in your `.rspec` file:
 
@@ -32,18 +32,25 @@ end
 require 'bundler/gem_tasks'
 require 'rspec/core/rake_task'
 
-ENV['GENERATIVE_COUNT'] = '10_000'
-
 task default: [:spec, :generative]
 
 RSpec::Core::RakeTask.new(:spec) do |t|
-  t.rspec_opts = '--format documentation --tag ~generative'
+  t.rspec_opts = '--format documentation --tag ~generative --order random'
 end
 
 RSpec::Core::RakeTask.new(:generative) do |t|
+  ENV['GENERATIVE_COUNT'] = '10_000'
   t.rspec_opts = '--format Generative --tag generative'
 end
 ```
+
+### Remove any random/other ordering
+
+If using RSpec 2, you'll need to make sure you remove `config.order =
+'random'`, or any other ordering strategies, from your spec helper.
+
+In RSpec 3, this is not nessecary, because each example group (the `generative`
+block) can override ordering for that group.
 
 ## Usage
 

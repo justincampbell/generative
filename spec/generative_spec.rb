@@ -13,7 +13,7 @@ describe String do
     generative do
       data(:string) { "a" * rand(255) }
 
-      it "is never negative", :generative do
+      it "is never negative" do
         expect(string.length).to be >= 0
       end
     end
