@@ -8,7 +8,7 @@ describe String do
       expect(string.length).to eq(3)
     end
 
-    xit "does other stuff"
+    xit "still prints pending spec names"
 
     generative do
       data(:string) { "a" * rand(255) }
