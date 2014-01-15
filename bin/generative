@@ -1,0 +1,7 @@
+#!/bin/bash -e
+
+GENERATIVE_COUNT=${GENERATIVE_COUNT:-10_000}
+
+set -x
+
+GENERATIVE_COUNT=$GENERATIVE_COUNT rspec --require generative --format Generative --tag generative
