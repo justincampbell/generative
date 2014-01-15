@@ -26,22 +26,13 @@ end
 --require generative
 ```
 
-### Modify your `Rakefile` to create separate `spec` and `generative` tasks:
+### (Optional) Require the Generative Rake task in your `Rakefile`:
 
 ```rb
-require 'bundler/gem_tasks'
 require 'rspec/core/rake_task'
+require 'generative/rake_task'
 
-task default: [:spec, :generative]
-
-RSpec::Core::RakeTask.new(:spec) do |t|
-  t.rspec_opts = '--format documentation --tag ~generative --order random'
-end
-
-RSpec::Core::RakeTask.new(:generative) do |t|
-  ENV['GENERATIVE_COUNT'] = '10_000'
-  t.rspec_opts = '--format Generative --tag generative'
-end
+task(:default).enhance [:spec, :generative]
 ```
 
 ### Remove any random/other ordering
@@ -49,7 +40,7 @@ end
 If using RSpec 2, you'll need to make sure you remove `config.order =
 'random'`, or any other ordering strategies, from your spec helper.
 
-In RSpec 3, this is not nessecary, because each example group (the `generative`
+In RSpec 3, this is not necessary, because each example group (the `generative`
 block) can override ordering for that group.
 
 ## Usage
@@ -109,8 +100,8 @@ Finished in 2.28 seconds
 30000 examples, 0 failures
 ```
 
-If you've setup your project with the `Rakefile` and `.rspec` examples above,
-you can also simply run `rake` to run all tests, including Generative ones.
+If you've added the Generative task to your `Rakefile`, you can also simply run
+`rake ` to run all tests, including Generative ones.
 
 ### Number of Tests
 
