@@ -85,13 +85,38 @@ describe String do
 end
 ```
 
-Now, run your tests with `rake` or `rspec`.
+### Running
+
+Generative comes with a `generative` command, which simply runs rspec with the
+required arguments:
+
+```
+$ generative
++ GENERATIVE_COUNT=10_000
++ rspec --require generative --format Generative --tag generative
+Run options: include {:generative=>true}
+
+String
+  #length
+    generative
+      is never negative
+  #reverse
+    generative
+      maintains length
+      is not destructive
+
+Finished in 2.28 seconds
+30000 examples, 0 failures
+```
+
+If you've setup your project with the `Rakefile` and `.rspec` examples above,
+you can also simply run `rake` to run all tests, including Generative ones.
 
 ### Number of Tests
 
 Generative uses the `GENERATIVE_COUNT` environment variable to control how many
-tests to run for each example. It defaults to 100, and in the example
-`Rakefile` above, we set it to 10,000.
+tests to run for each example. Both the `generative` command and the example
+`Rakefile` above set it to 10,000.
 
 ### Formatters
 
