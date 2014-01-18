@@ -3,6 +3,7 @@ require 'rspec/core/rake_task'
 require 'generative/rake_task'
 
 task default: [:spec, :generative, :acceptance]
+task ci: [:spec, :generative]
 
 RSpec::Core::RakeTask.new(:spec)
 Generative::RakeTask.new(:generative)
