@@ -1,8 +1,19 @@
-#!/bin/bash -e
+#!/usr/bin/env ruby
 
-GENERATIVE_COUNT=${GENERATIVE_COUNT:-10_000}
+$: << File.expand_path(File.join(File.dirname(__FILE__), "..", "lib"))
 
-set -x
+require 'generative'
 
-GENERATIVE_COUNT=$GENERATIVE_COUNT\
-  rspec --require generative --format Generative::Formatter --tag generative
+ENV['GENERATIVE_COUNT'] ||= '10_000'
+
+command = %w[
+  rspec
+  --require generative
+  --format Generative::Formatter
+  --tag generative
+].join(' ')
+
+command = "GENERATIVE_COUNT=#{ENV['GENERATIVE_COUNT']} #{command}"
+
+puts command
+system command
