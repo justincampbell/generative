@@ -5,8 +5,8 @@ require 'generative/rake_task'
 task default: [:spec, :generative, :acceptance]
 task ci: [:spec, :generative]
 
-RSpec::Core::RakeTask.new(:spec)
-Generative::RakeTask.new(:generative)
+RSpec::Core::RakeTask.new
+Generative::RakeTask.new
 
 desc "Verify all spec commands behave properly"
 task :acceptance do

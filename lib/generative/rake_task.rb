@@ -6,6 +6,8 @@ module Generative
     def initialize(*args, &task_block)
       setup_ivars(args)
 
+      self.name = :generative if name == :spec
+
       desc "Run Generative specs" unless Rake.application.last_comment
 
       options = %w[
