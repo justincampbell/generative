@@ -26,30 +26,30 @@ end
 --require generative
 ```
 
-### Modify your `Rakefile` to create separate `spec` and `generative` tasks:
+### (Optional) Require the Generative Rake task in your `Rakefile`:
 
 ```rb
-require 'bundler/gem_tasks'
 require 'rspec/core/rake_task'
+require 'generative/rake_task'
 
-task default: [:spec, :generative]
+task(:default).enhance [:spec, :generative]
 
-RSpec::Core::RakeTask.new(:spec) do |t|
-  t.rspec_opts = '--format documentation --tag ~generative --order random'
-end
-
-RSpec::Core::RakeTask.new(:generative) do |t|
-  ENV['GENERATIVE_COUNT'] = '10_000'
-  t.rspec_opts = '--format Generative --tag generative'
-end
+RSpec::Core::RakeTask.new
+Generative::RakeTask.new
 ```
 
 ### Remove any random/other ordering
 
 If using RSpec 2, you'll need to make sure you remove `config.order =
-'random'`, or any other ordering strategies, from your spec helper.
+'random'`, or any other ordering strategies, from your spec helper. You can
+also use `Generative.running?` to only disable random ordering during
+Generative runs:
 
-In RSpec 3, this is not nessecary, because each example group (the `generative`
+```rb
+config.order = :random unless Generative.running?
+```
+
+In RSpec 3, this is not necessary, because each example group (the `generative`
 block) can override ordering for that group.
 
 ## Usage
@@ -85,13 +85,38 @@ describe String do
 end
 ```
 
-Now, run your tests with `rake` or `rspec`.
+### Running
+
+Generative comes with a `generative` command, which simply runs rspec with the
+required arguments:
+
+```
+$ generative
++ GENERATIVE_COUNT=10_000
++ rspec --require generative --format Generative --tag generative
+Run options: include {:generative=>true}
+
+String
+  #length
+    generative
+      is never negative
+  #reverse
+    generative
+      maintains length
+      is not destructive
+
+Finished in 2.28 seconds
+30000 examples, 0 failures
+```
+
+If you've added the Generative task to your `Rakefile`, you can also simply run
+`rake ` to run all tests, including Generative ones.
 
 ### Number of Tests
 
 Generative uses the `GENERATIVE_COUNT` environment variable to control how many
-tests to run for each example. It defaults to 100, and in the example
-`Rakefile` above, we set it to 10,000.
+tests to run for each example. Both the `generative` command and the example
+`Rakefile` above set it to 10,000.
 
 ### Formatters
 

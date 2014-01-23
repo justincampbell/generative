@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |gem|
   gem.name          = 'generative'
-  gem.version       = '0.1.0'
+  gem.version       = '0.2.0.pre2'
   gem.authors       = ["Justin Campbell",          "Dan McClory"]
   gem.email         = ["justin@justincampbell.me", "danmcclory@gmail.com"]
   gem.description   = "Generative testing for RSpec"
@@ -13,6 +13,7 @@ Gem::Specification.new do |gem|
   gem.license       = 'MIT'
 
   gem.files         = `git ls-files`.split($/)
+  gem.executables   = gem.files.grep(%r{^bin/}).map { |file| File.basename file }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
