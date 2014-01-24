@@ -13,12 +13,12 @@ describe Generative::ORDERING do
   end
 
   it "does not duplicate regular specs" do
-    spec = double metadata: {}
+    spec = double(metadata: {})
     expect(ordering.call([spec])).to eq([spec])
   end
 
   it "duplicates generative specs" do
-    spec = double metadata: { generative: true }
-    expect(ordering.call([spec])).to have(10).items
+    spec = double(metadata: { generative: true })
+    expect(ordering.call([spec]).count).to eq(10)
   end
 end
