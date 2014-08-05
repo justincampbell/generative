@@ -38,20 +38,6 @@ RSpec::Core::RakeTask.new
 Generative::RakeTask.new
 ```
 
-### Remove any random/other ordering
-
-If using RSpec 2, you'll need to make sure you remove `config.order =
-'random'`, or any other ordering strategies, from your spec helper. You can
-also use `Generative.running?` to only disable random ordering during
-Generative runs:
-
-```rb
-config.order = :random unless Generative.running?
-```
-
-In RSpec 3, this is not necessary, because each example group (the `generative`
-block) can override ordering for that group.
-
 ## Usage
 
 ### Specs
