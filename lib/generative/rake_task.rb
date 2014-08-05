@@ -4,7 +4,7 @@ require 'rspec/core/rake_task'
 module Generative
   class RakeTask < RSpec::Core::RakeTask
     def initialize(*args, &task_block)
-      setup_ivars(args)
+      super
 
       self.name = :generative if name == :spec
 
