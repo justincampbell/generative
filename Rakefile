@@ -10,16 +10,27 @@ Generative::RakeTask.new
 
 desc "Verify all spec commands behave properly"
 task :acceptance do
+  ENV.delete('GENERATIVE_COUNT')
+
   [
-    ['rspec', '6'],
-    ['rake spec', '6'],
+    ['rspec', '13'],
+    ['rake spec', '13'],
     ['rake generative', '30000'],
     ['bin/generative', '30000']
-  ].each do |command, example_count|
-    result = system %{#{command} | grep "#{example_count} examples, 0 failures"}
+  ].each do |command, expected_example_count|
+    puts "Checking output of `#{command}`"
+    output = %x{#{command}}
+    pattern = /(\d+) examples, (\d+) failures/
+    _, example_count, failure_count = output.match(pattern).to_a
 
-    unless result
-      fail "`#{command}` had an incorrect example count"
+    unless failure_count == '0'
+      fail "`#{command}` had #{failure_count} failures"
+    end
+
+    unless example_count == expected_example_count
+      fail "`#{command}` had an incorrect example count, " \
+        "expected #{expected_example_count}, " \
+        "but got #{example_count}"
     end
   end
 
