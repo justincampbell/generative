@@ -1,13 +1,15 @@
 require 'rspec/core/formatters/progress_formatter'
+require 'rspec/core/formatters/console_codes'
 
 class RSpec::Core::Formatters::ProgressFormatter
-  def example_passed(example)
-    super(example)
 
-    if example.metadata[:generative]
-      output.print detail_color('.')
+  alias super_example_passed example_passed
+
+  def example_passed(example)
+    if example.example.metadata[:generative]
+      output.print RSpec::Core::Formatters::ConsoleCodes.wrap('.', :detail)
     else
-      output.print success_color('.')
+      super_example_passed(example)
     end
   end
 end
