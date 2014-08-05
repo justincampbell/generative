@@ -2,14 +2,15 @@ require 'rspec/core/formatters/progress_formatter'
 require 'rspec/core/formatters/console_codes'
 
 class RSpec::Core::Formatters::ProgressFormatter
+  alias_method :super_example_passed, :example_passed
 
-  alias super_example_passed example_passed
+  def example_passed(notification)
+    example = notification.example
 
-  def example_passed(example)
-    if example.example.metadata[:generative]
-      output.print RSpec::Core::Formatters::ConsoleCodes.wrap('.', :detail)
+    if example.metadata[:generative]
+      output.print RSpec::Core::Formatters::ConsoleCodes.wrap('.', :cyan)
     else
-      super_example_passed(example)
+      super_example_passed(notification)
     end
   end
 end
@@ -18,11 +19,19 @@ require 'rspec/core/formatters/documentation_formatter'
 
 module Generative
   class Formatter < RSpec::Core::Formatters::DocumentationFormatter
+    RSpec::Core::Formatters.register self,
+      :example_failed,
+      :example_group_started,
+      :example_passed,
+      :example_pending
+
     def initialize(output)
-      super(output)
+      super
     end
 
-    def example_group_started(example_group)
+    def example_group_started(notification)
+      example_group = notification.group
+
       @example_group = example_group
 
       output.puts if @group_level == 0
@@ -43,27 +52,37 @@ module Generative
       @group_level += 1
     end
 
-    def example_passed(example)
+    def example_passed(notification)
+      example = notification.example
+
       return if generative?(example)
 
-      super(example)
+      super
     end
 
-    def example_pending(example)
+    def example_pending(notification)
+      example = notification.example
+
       return if generative?(example)
 
-      super(example)
+      super
     end
 
-    def example_failed(example)
+    def example_failed(notification)
+      example = notification.example
+
       if generative?(example)
         RSpec.wants_to_quit = true
       end
 
-      super(example)
+      super
     end
 
     private
+
+    def detail_color(text)
+      RSpec::Core::Formatters::ConsoleCodes.wrap(text, :cyan)
+    end
 
     def generative?(example)
       example.metadata[:generative]
