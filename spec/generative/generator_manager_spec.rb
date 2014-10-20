@@ -10,7 +10,7 @@ describe Generative::GeneratorManager do
     end
 
     it "registers a new generator" do
-      name, generator = :test, -> () { "hi" }
+      name, generator = :test, lambda { "hi" }
       expect(subject.generators).not_to include(name)
       expect(subject.register(name, generator)).to include(name)
       expect(subject.generators[name].call).to eq("hi")
@@ -19,7 +19,7 @@ describe Generative::GeneratorManager do
 
   describe "#find_and_call" do
     it "calls a specific generator passing in it's arguments" do
-      name, generator = :test, -> (arg) { arg }
+      name, generator = :test, lambda { |arg| arg }
       subject.register(name, generator)
       expect(subject.find_and_call(name, "hi")).to eq("hi")
     end
