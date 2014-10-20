@@ -13,8 +13,8 @@ task :acceptance do
   ENV.delete('GENERATIVE_COUNT')
 
   [
-    ['rspec', '13'],
-    ['rake spec', '13'],
+    ['rspec', '16'], # can we do this some other way
+    ['rake spec', '16'], # sucks to bump as we add tests...
     ['rake generative', '30000'],
     ['bin/generative', '30000']
   ].each do |command, expected_example_count|

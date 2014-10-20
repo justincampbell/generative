@@ -11,3 +11,4 @@ end
 require 'generative/dsl'
 require 'generative/formatters'
 require 'generative/ordering'
+require 'generative/generator_manager'
