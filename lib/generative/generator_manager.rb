@@ -10,10 +10,11 @@ module Generative
       @generators = Hash.new(preregistered_generators)
     end
 
-    def register(name, generator)
-      msg = "#{generator} must respond to :call"
-      raise InvalidGenerator, msg unless generator_valid?(generator)
-      @generators.merge!(name => generator)
+    def register_generator(name, factory=nil, &generator)
+      registerable = block_given? ? generator : factory
+      msg = "#{registerable} must respond to :call"
+      raise InvalidGenerator, msg unless generator_valid?(registerable)
+      @generators.merge!(name => registerable)
     end
 
     def find_and_call(name, *args)

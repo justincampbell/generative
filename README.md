@@ -120,9 +120,9 @@ responds to `#call`.
 Whether you just want to use lambdas.
 
 ```rb
-Generative.manager.register(:full_name, ->() { "#{generate(:string)} #{generate(:string}" }
+Generative.manager.register(:full_name) { "#{generate(:string)} #{generate(:string}" }
 
-Generative.manager.register(:user, ->() { FactorGirl.build(:user, id: generate(:integer) }))
+Generative.manager.register(:user) { FactorGirl.build(:user, id: generate(:integer)) }
 ```
 
 A class or module that responds to `#call`.
