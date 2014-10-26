@@ -8,4 +8,4 @@ matrix:
   allow_failures:
     - rvm: ruby-head
 script:
-  - rake ci
+  - bundle exec rake ci
