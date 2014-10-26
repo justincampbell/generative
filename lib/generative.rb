@@ -1,7 +1,13 @@
 require 'rspec/core'
 
 module Generative
+
   DEFAULT_COUNT = '10_000'
+
+  class << self
+    extend Forwardable
+    def_delegators :manager, :register_generator, :find_and_call
+  end
 
   def self.manager
     @manager ||= GeneratorManager.new(preregistered_generators)

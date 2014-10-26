@@ -8,6 +8,6 @@ class RSpec::Core::ExampleGroup
   end
 
   def generate(generator_name, *args)
-    Generative.manager.find_and_call(generator_name, *args)
+    Generative.find_and_call(generator_name, *args)
   end
 end

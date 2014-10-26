@@ -1,6 +1,6 @@
 require 'generative'
 
-Generative.manager.register_generator(:string) { "a" * rand(255) }
+Generative.register_generator(:string) { "a" * rand(255) }
 
 describe String do
   let(:string) { "abc" }

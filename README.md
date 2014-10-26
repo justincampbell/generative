@@ -120,9 +120,9 @@ responds to `#call`.
 Whether you just want to use lambdas.
 
 ```rb
-Generative.manager.register(:full_name) { "#{generate(:string)} #{generate(:string}" }
+Generative.register_generator(:full_name) { "#{generate(:string)} #{generate(:string}" }
 
-Generative.manager.register(:user) { FactorGirl.build(:user, id: generate(:integer)) }
+Generative.register_generator(:user) { FactorGirl.build(:user, id: generate(:integer)) }
 ```
 
 A class or module that responds to `#call`.
@@ -134,7 +134,7 @@ class LameGenerator
   end
 end
 
-Generative.manager.register(:lame, LameGenerator)
+Generative.register_generator(:lame, LameGenerator)
 ```
 
 Or you want to use a fancy library.
@@ -149,7 +149,7 @@ FakeTypeMappingLibrary
   end
 end
 
-Generative.manager.register(:bar, Bar }
+Generative.register_generator(:bar, Bar }
 ```
 
 You can then use your generators using the `generate` helper.
