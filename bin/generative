@@ -13,7 +13,7 @@ command = %w[
   --tag generative
 ].join(' ')
 
-command = "GENERATIVE_COUNT=#{ENV['GENERATIVE_COUNT']} #{command}"
+command = "export GENERATIVE_COUNT=#{ENV['GENERATIVE_COUNT']}; #{command}; unset GENERATIVE_COUNT"
 
 puts command
 system command

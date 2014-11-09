@@ -4,5 +4,10 @@ class RSpec::Core::ExampleGroup
 
   class << self
     alias_method :data, :let
+    alias_method :for_every, :let
+  end
+
+  def generate(generator_name, *args)
+    Generative.find_and_call(generator_name, *args)
   end
 end

@@ -110,3 +110,67 @@ Given the examples above, running `rspec` will use the default "progress"
 formatter. Requiring generative will modify this formatter to output blue dots
 instead of green for generative tests. Generative also includes it's own
 formatter, which will only display generative test names once, also in blue.
+
+### Generators
+
+Generative allows you to register your own custom generators for generative
+tests. Registering a generator requires two thing, a name and an object that
+responds to `#call`.
+
+Whether you just want to use lambdas.
+
+```rb
+Generative.register_generator(:full_name) { "#{generate(:string)} #{generate(:string}" }
+
+Generative.register_generator(:user) { FactorGirl.build(:user, id: generate(:integer)) }
+```
+
+A class or module that responds to `#call`.
+
+```rb
+class LameGenerator
+  def self.call
+    random_string
+  end
+end
+
+Generative.register_generator(:lame, LameGenerator)
+```
+
+Or you want to use a fancy library.
+
+```rb
+FakeTypeMappingLibrary
+  generator_for Bar do
+    initializer Float, Fixnum
+
+    accessor :baz, Float
+    accessor :quz, NotherClass
+  end
+end
+
+Generative.register_generator(:bar, Bar }
+```
+
+You can then use your generators using the `generate` helper.
+
+```rb
+describe String do
+  let(:string) { "abc" }
+
+  describe "#reverse" do
+    generative do
+      data(:string) { generate(:my_fancy_string) }
+
+      it "maintains length" do
+        expect(string.reverse.length).to eq(string.length)
+      end
+    end
+  end
+end
+```
+
+**Note**: At this time Generative provides no pre-made generators. We
+encourage you to go out and seek good ways of generating
+data and maybe even package them up as your own gems. If you
+do, let us know and we'll link to it here.

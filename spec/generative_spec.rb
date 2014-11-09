@@ -1,5 +1,7 @@
 require 'generative'
 
+Generative.register_generator(:string) { "a" * rand(255) }
+
 describe String do
   let(:string) { "abc" }
 
@@ -12,6 +14,16 @@ describe String do
 
     generative do
       data(:string) { "a" * rand(255) }
+
+      it "is never negative" do
+        expect(string.length).to be >= 0
+      end
+    end
+
+    xit "uses registered generators"
+
+    generative do
+      data(:string) { generate(:string) }
 
       it "is never negative" do
         expect(string.length).to be >= 0
