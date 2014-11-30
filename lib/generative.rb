@@ -9,6 +9,10 @@ module Generative
     def_delegators :manager, :register_generator, :find_and_call
   end
 
+  def self.generate(generator_name, *args)
+    find_and_call(generator_name, *args)
+  end
+
   def self.manager
     @manager ||= GeneratorManager.new(preregistered_generators)
   end
