@@ -122,7 +122,7 @@ Whether you just want to use lambdas.
 ```rb
 Generative.register_generator(:full_name) { "#{Generative.generate(:string)} #{Generative.generate(:string}" }
 
-Generative.register_generator(:user) { FactorGirl.build(:user, id: Generative.generate(:integer)) }
+Generative.register_generator(:user) { FactoryGirl.build(:user, id: Generative.generate(:integer)) }
 ```
 
 A class or module that responds to `#call`.
