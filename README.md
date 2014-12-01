@@ -120,9 +120,9 @@ responds to `#call`.
 Whether you just want to use lambdas.
 
 ```rb
-Generative.register_generator(:full_name) { "#{generate(:string)} #{generate(:string}" }
+Generative.register_generator(:full_name) { "#{Generative.generate(:string)} #{Generative.generate(:string}" }
 
-Generative.register_generator(:user) { FactorGirl.build(:user, id: generate(:integer)) }
+Generative.register_generator(:user) { FactoryGirl.build(:user, id: Generative.generate(:integer)) }
 ```
 
 A class or module that responds to `#call`.
@@ -170,7 +170,28 @@ describe String do
 end
 ```
 
+#### I heard you like generators so I put some generators in your generators...
+
+If you want to use other generators in you registered generator do note
+you have to use Generative's module level method `.generate` like so...
+
+```rb
+Generative.register_generator :user do
+  User.new( first_name: Generative.generate(:string, max: 100) )
+end
+```
+
+
+
+### Pre-made Generators
+
 **Note**: At this time Generative provides no pre-made generators. We
 encourage you to go out and seek good ways of generating
 data and maybe even package them up as your own gems. If you
 do, let us know and we'll link to it here.
+
+
+#### Degenerate
+
+This library has a few generators for some basic primitives... A great start if
+you're looking to move quickly.
