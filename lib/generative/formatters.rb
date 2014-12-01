@@ -72,7 +72,7 @@ module Generative
       example = notification.example
 
       if generative?(example)
-        RSpec.wants_to_quit = true
+        RSpec.world.wants_to_quit = true
       end
 
       super
