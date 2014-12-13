@@ -18,11 +18,9 @@ module Generative
     end
 
     def find_and_call(name, *args)
-      begin
-        generators[name].call(*args)
-      rescue NoMethodError
+      generators.fetch(name) do
         raise UnregisteredGenerator, "#{name} generator not registered"
-      end
+      end.call(*args)
     end
 
     def generator_valid?(generator)
