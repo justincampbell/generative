@@ -2,11 +2,17 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
+authors = {
+  "Justin Campbell" => "justin@justincampbell.com",
+  "Dan McClory" => "danmcclory@gmail.com",
+  "Nate West" => "natescott.west@gmail.com"
+}
+
 Gem::Specification.new do |gem|
   gem.name          = 'generative'
   gem.version       = '0.2.2'
-  gem.authors       = ["Justin Campbell",          "Dan McClory"]
-  gem.email         = ["justin@justincampbell.me", "danmcclory@gmail.com"]
+  gem.authors       = authors.keys
+  gem.email         = authors.values
   gem.description   = "Generative testing for RSpec"
   gem.summary       = "Generative testing for RSpec"
   gem.homepage      = "https://github.com/justincampbell/generative"
