@@ -191,7 +191,7 @@ data and maybe even package them up as your own gems. If you
 do, let us know and we'll link to it here.
 
 
-#### Degenerate
+#### [Degenerate](https://github.com/niftyn8/degenerate)
 
 This library has a few generators for some basic primitives... A great start if
 you're looking to move quickly.
