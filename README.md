@@ -22,7 +22,7 @@ end
 
 ```
 --color
---format progress
+--format Generative::Formatter
 --require generative
 ```
 
@@ -79,7 +79,7 @@ required arguments:
 ```
 $ generative
 + GENERATIVE_COUNT=10_000
-+ rspec --require generative --format Generative --tag generative
++ rspec --require generative --format Generative::Formatter --tag generative
 Run options: include {:generative=>true}
 
 String
