@@ -13,8 +13,8 @@ Gem::Specification.new do |gem|
   gem.version       = '0.2.3'
   gem.authors       = authors.keys
   gem.email         = authors.values
-  gem.description   = "Generative testing for RSpec"
-  gem.summary       = "Generative testing for RSpec"
+  gem.description   = "Generative and property-based testing for RSpec"
+  gem.summary       = "Generative and property-based testing for RSpec"
   gem.homepage      = "https://github.com/justincampbell/generative"
   gem.license       = 'MIT'
 
