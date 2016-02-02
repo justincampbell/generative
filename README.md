@@ -71,6 +71,24 @@ describe String do
 end
 ```
 
+Alternatively, you can modify existing specs in a minimally intrusive way by just adding two tags to an existing context and using the fact that `data` is just an alias for `let`:
+```ruby
+describe String do
+  let(:string) { "abc" }
+
+  describe "#reverse", generative: true, order: :generative do
+    let(:string) { rand(12345).to_s }
+
+    it "maintains length" do
+      expect(string.reverse.length).to eq(string.length)
+    end
+
+    it "is not destructive" do
+      expect(string.reverse.reverse).to eq(string)
+    end
+  end
+end
+```
 ### Running
 
 Generative comes with a `generative` command, which simply runs rspec with the
