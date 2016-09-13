@@ -37,7 +37,8 @@ module Generative
       output.puts if @group_level == 0
 
       if generative?(example_group)
-        output.puts "#{current_indentation}#{detail_color('generative')}"
+        group_description = "#{example_group.description} (generative)"
+        output.puts "#{current_indentation}#{detail_color(group_description)}"
 
         @group_level += 1
         example_group.examples.each do |example|
