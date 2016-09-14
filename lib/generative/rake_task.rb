@@ -8,7 +8,7 @@ module Generative
 
       self.name = :generative if name == :spec
 
-      desc "Run Generative specs" unless Rake.application.last_comment
+      desc "Run Generative specs" unless Rake.application.last_description
 
       options = %w[
         --require generative
