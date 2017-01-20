@@ -188,7 +188,7 @@ end
 
 #### I heard you like generators so I put some generators in your generators...
 
-If you want to use other generators in you registered generator do note
+If you want to use other generators in your registered generator, do note
 you have to use Generative's module level method `.generate` like so...
 
 ```rb
