@@ -1,4 +1,7 @@
 require 'rspec/core'
+if RUBY_DESCRIPTION
+  require 'forwardable'
+end
 
 module Generative
 
