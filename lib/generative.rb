@@ -1,4 +1,5 @@
 require 'rspec/core'
+require 'forwardable'
 
 module Generative
 
