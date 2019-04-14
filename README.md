@@ -48,7 +48,7 @@ would a `let`. Then, write your `it`/`specify` blocks as usual (while keeping
 in mind that the input could be anything).
 
 ```rb
-describe String do
+RSpec.describe String do
   let(:string) { "abc" }
 
   describe "#reverse" do
@@ -73,7 +73,7 @@ end
 
 Alternatively, you can modify existing specs in a minimally intrusive way by just adding two tags to an existing context and using the fact that `data` is just an alias for `let`:
 ```ruby
-describe String do
+RSpec.describe String do
   describe "#reverse", generative: true, order: :generative do
     let(:string) { rand(12345).to_s }
 
@@ -171,7 +171,7 @@ Generative.register_generator(:bar, Bar }
 You can then use your generators using the `generate` helper.
 
 ```rb
-describe String do
+RSpec.describe String do
   let(:string) { "abc" }
 
   describe "#reverse" do

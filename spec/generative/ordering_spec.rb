@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Generative::ORDERING do
+RSpec.describe Generative::ORDERING do
   let(:ordering) { Generative::ORDERING }
 
   around do |example|
