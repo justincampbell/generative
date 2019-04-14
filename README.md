@@ -1,9 +1,9 @@
 # Generative
 
 > Generative and property-based testing for RSpec
-> [![Gem Version](https://badge.fury.io/rb/generative.png)](http://badge.fury.io/rb/generative)
-> [![Build Status](https://travis-ci.org/justincampbell/generative.png?branch=master)](https://travis-ci.org/justincampbell/generative)
-> [![Code Climate](https://codeclimate.com/github/justincampbell/generative.png)](https://codeclimate.com/github/justincampbell/generative)
+> [![Gem Version](https://badge.fury.io/rb/generative.svg)](http://badge.fury.io/rb/generative)
+> [![Build Status](https://travis-ci.org/justincampbell/generative.svg?branch=master)](https://travis-ci.org/justincampbell/generative)
+> [![Code Climate](https://codeclimate.com/github/justincampbell/generative.svg)](https://codeclimate.com/github/justincampbell/generative)
 
 ## Installation
 
