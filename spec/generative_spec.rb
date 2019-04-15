@@ -2,7 +2,7 @@ require 'generative'
 
 Generative.register_generator(:string) { "a" * rand(255) }
 
-describe String do
+RSpec.describe String do
   let(:string) { "abc" }
 
   describe "#length" do

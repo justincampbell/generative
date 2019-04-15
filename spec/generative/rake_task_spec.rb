@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'generative/rake_task'
 
-describe Generative::RakeTask do
+RSpec.describe Generative::RakeTask do
   let(:task) { Generative::RakeTask.new(*args) }
   let(:args) { [] }
 

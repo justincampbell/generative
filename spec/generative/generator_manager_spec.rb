@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Generative::GeneratorManager do
+RSpec.describe Generative::GeneratorManager do
 
   subject { Generative::GeneratorManager.new }
 
