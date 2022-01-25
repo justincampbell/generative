@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-https://github.com/justincampbell/generative/compare/v0.2.4...master
+https://github.com/justincampbell/generative/compare/v0.2.4...main
 
 - Fix: require forwardable ([#30](https://github.com/justincampbell/generative/pull/30))
 
