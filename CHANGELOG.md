@@ -1,8 +1,8 @@
 # Changelog
 
-## Unreleased
+## 0.2.5 (2022-01-25)
 
-https://github.com/justincampbell/generative/compare/v0.2.4...main
+https://github.com/justincampbell/generative/compare/v0.2.4...v0.2.5
 
 - Fix: require forwardable ([#30](https://github.com/justincampbell/generative/pull/30))
 
