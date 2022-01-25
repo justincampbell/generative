@@ -10,7 +10,7 @@ authors = {
 
 Gem::Specification.new do |gem|
   gem.name          = 'generative'
-  gem.version       = '0.2.4'
+  gem.version       = '0.2.5'
   gem.authors       = authors.keys
   gem.email         = authors.values
   gem.description   = "Generative and property-based testing for RSpec"
