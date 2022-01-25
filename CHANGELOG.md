@@ -4,6 +4,8 @@
 
 https://github.com/justincampbell/generative/compare/v0.2.4...master
 
+- Fix: require forwardable ([#30](https://github.com/justincampbell/generative/pull/30))
+
 ## 0.2.4 (2016-09-15)
 
 https://github.com/justincampbell/generative/compare/v0.2.4...v0.2.4
